@@ -1,7 +1,6 @@
-package natsStreaming
+package utils
 
 import (
-	"github.com/nats-io/nats.go"
 	"log"
 	"time"
 )

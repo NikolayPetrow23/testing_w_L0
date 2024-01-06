@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/includes/headers.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/includes/footer.css" type="text/css">
+    {{block "css" .}}
+    {{end}}
+    <title>{{block "title" .}}{{end}}</title>
+</head>
+<body>
+<main>
+    {{template "headers.html" .}}
+
+    {{block "content" .}}{{end}}
+
+    {{template "footer.html" .}}
+</main>
+</body>
+</html>

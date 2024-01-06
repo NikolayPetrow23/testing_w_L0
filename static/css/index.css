@@ -1,0 +1,23 @@
+.form-order {
+    width: 80%;
+}
+
+.button-wb {
+    border-radius: 5px;
+    background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    margin-top: 20px;
+    border: none;
+    padding: 10px 7px 7px 10px;
+    color: whitesmoke;
+    width: 80%;
+}
+
+.button-wb:hover {
+    background-image: linear-gradient(to top, #602a8d 0%, #8d0f49 100%);
+}
+
+@media (max-width: 767px) {
+    .form-order {
+        width: 80%
+    }
+}

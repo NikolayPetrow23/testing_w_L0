@@ -73,3 +73,32 @@ func Migrations() {
 	db.AutoMigrate(&User{}, &Pay{}, &Product{}, &Order{})
 	CloseConnection(db)
 }
+
+//func main() {
+//	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{
+//		Logger: logger.Default.LogMode(logger.Info),
+//	})
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	m := gormigrate.New(db, gormigrate.DefaultOptions, []*gormigrate.Migration{
+//		{
+//			ID: "202201041200",
+//			Migrate: func(tx *gorm.DB) error {
+//				return tx.AutoMigrate(&User{})
+//			},
+//			Rollback: func(tx *gorm.DB) error {
+//				return tx.Migrator().DropTable(&User{})
+//			},
+//		},
+//		// Добавьте другие миграции для ваших фикстур
+//	})
+//
+//	if err := m.Migrate(); err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	// Теперь у вас есть база данных с миграциями, включая таблицу User
+//	// Вы можете добавить код для создания фикстур данных в этой таблице
+//}
