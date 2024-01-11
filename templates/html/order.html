@@ -1,0 +1,84 @@
+{{define "base"}}
+{{block "css" .}}
+
+{{end}}
+
+{{block "content" .}}
+<div class="container" style="margin-top: 150px; margin-bottom: 70px;">
+    <div class="container col-lg-8 py-5" style="background-color: whitesmoke; border-radius: 20px">
+        <div class="container col-lg-10">
+            <p class="text-center">Заказ # {{ .OrderUid }}</p>
+            <p>ID: {{ .ID }}</p>
+            <p>Order_Uid: {{ .OrderUid }}</p>
+            <p>Track_Number: {{ .TrackNumber }}</p>
+            <p>Entry: {{ .Entry }}</p>
+            <p class="mb-0">
+                <div class="btn-group dropend">
+                    Delivery:
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background-color: #d8d8d8">
+                        {{ .Delivery.Name }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Name: {{ .Delivery.Name }}</a></li>
+                        <li><a class="dropdown-item" href="#">Phone: {{ .Delivery.Phone }}</a></li>
+                        <li><a class="dropdown-item" href="#">Zip: {{ .Delivery.Zip }}</a></li>
+                        <li><a class="dropdown-item" href="#">City: {{ .Delivery.City }}</a></li>
+                        <li><a class="dropdown-item" href="#">Address: {{ .Delivery.Address }}</a></li>
+                        <li><a class="dropdown-item" href="#">Region: {{ .Delivery.Region }}</a></li>
+                        <li><a class="dropdown-item" href="#">Email: {{ .Delivery.Email }}</a></li>
+                    </ul>
+                </div>
+            </p>
+            <p class="mb-0">
+                <div class="btn-group dropend">
+                    Transaction:
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background-color: #d8d8d8">
+                        {{ .Payment.Transaction }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Transaction: {{ .Payment.Transaction }}</a></li>
+                        <li><a class="dropdown-item" href="#">RequestId: {{ .Payment.RequestID }}</a></li>
+                        <li><a class="dropdown-item" href="#">Currency: {{ .Payment.Currency }}</a></li>
+                        <li><a class="dropdown-item" href="#">Provider: {{ .Payment.Provider }}</a></li>
+                        <li><a class="dropdown-item" href="#">Amount: {{ .Payment.Amount }}</a></li>
+                        <li><a class="dropdown-item" href="#">PaymentDt: {{ .Payment.PaymentDt }}</a></li>
+                        <li><a class="dropdown-item" href="#">Bank: {{ .Payment.Bank }}</a></li>
+                        <li><a class="dropdown-item" href="#">DeliveryCost: {{ .Payment.DeliveryCost }}</a></li>
+                        <li><a class="dropdown-item" href="#">GoodsTotal: {{ .Payment.GoodsTotal }}</a></li>
+                        <li><a class="dropdown-item" href="#">CustomFee: {{ .Payment.CustomFee }}</a></li>
+                    </ul>
+                </div>
+            </p>
+            <p class="mb-0">
+                <div class="btn-group dropend">
+                    Items:
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 10px; background-color: #d8d8d8">
+                        {{ .Items.ChrtID }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Chrt_id: {{ .Items.ChrtID }}</a></li>
+                        <li><a class="dropdown-item" href="#">Track_number: {{ .Items.TrackNumber }}</a></li>
+                        <li><a class="dropdown-item" href="#">Price: {{ .Items.Price }}</a></li>
+                        <li><a class="dropdown-item" href="#">Rid: {{ .Items.Rid }}</a></li>
+                        <li><a class="dropdown-item" href="#">Name: {{ .Items.Name }}</a></li>
+                        <li><a class="dropdown-item" href="#">Sale: {{ .Items.Sale }}</a></li>
+                        <li><a class="dropdown-item" href="#">Sale: {{ .Items.Size }}</a></li>
+                        <li><a class="dropdown-item" href="#">Total_price: {{ .Items.TotalPrice }}</a></li>
+                        <li><a class="dropdown-item" href="#">Nm_id: {{ .Items.NmID }}</a></li>
+                        <li><a class="dropdown-item" href="#">Brand: {{ .Items.Brand }}</a></li>
+                        <li><a class="dropdown-item" href="#">Status: {{ .Items.Status }}</a></li>
+                    </ul>
+                </div>
+            <p>Locale: {{ .Locale }}</p>
+            <p>Internal_Signature: {{ .InternalSignature }}</p>
+            <p>Customer_ID: {{ .CustomerID }}</p>
+            <p>Delivery_Service: {{ .DeliveryService }}</p>
+            <p>Shard_Key: {{ .ShardKey }}</p>
+            <p>Sm_Id: {{ .SmID }}</p>
+            <p>Date_Created: {{ .DateCreated }}</p>
+            <p>Oof_Shard: {{ .OofShard }}</p>
+        </div>
+   </div>
+</div>
+{{end}}
+{{end}}

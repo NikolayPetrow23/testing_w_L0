@@ -1,0 +1,10 @@
+.nav-custom {
+    background: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    position: fixed;
+    border-radius: 20px;
+    padding-left: 10px;
+    letter-spacing: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
