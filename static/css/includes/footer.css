@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 767px) {
-    .custom-footer .container .row .image_footer img {
-        display: none;
+    .custom-footer .container .row .image_footer {
+        top: 0px;
     }
 }

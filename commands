@@ -1,7 +1,19 @@
-docker run -p 4222:4222 -p 8222:8222 -p 6222:6222 --name nats-streaming -d nats-streaming
+docker run -p 4222:4222 --name nats-streaming -d nats-streaming
 
 docker run -p 5432:5432 --name wb_db -e POSTGRES_USER=wb_user -e POSTGRES_PASSWORD=wb_password -e POSTGRES_DB=wb_db -d postgres:13.3
 
-database.CreateProduct(2, 123232, 2000, "ewertdf2023", "Yeezy Boost v350", 30, "3", 20020, 231423, "Adidas", 1)
-database.CreatePay(5153123, 235454, "RUB", "WBPROV", 20020, 434153, "SBER", 12323, 23422, 2312)
-database.CreateOrder("qwsfvv3412", "wwe123", 1, 1, 1, "23:232123", "sdsdsa2wew", "asd223rfdfID", "WBSSW", "sqweqwewqe", 42135, "sawerrqwesdqw23")
+database.Created
+
+
+	database.CreateUser("Nikolay Petrow", "+9720000000", "2639809", "Kiryat Mozkin", "Ploshad Mira 15", "Kraiot", "test@gmail.com")
+	database.CreateUser("Test Testov", "+9720000000", "2639809", "Kiryat Mozkin", "Ploshad Mira 15", "Kraiot", "test@gmail.com")
+	database.CreateProduct(9934930, "WBILMTESTTRACK", 453, "ab4219087a764ae0btest", "Mascaras", 30, "0", 317, 2389212, "Vivienne Sabo", 202)
+	database.CreatePay("b563feb7b2b84b6test", "", "USD", "wbpay", 1817, 1637907727, "alpha", 1500, 317, 0)
+	database.CreateOrder("b563feb7b2b84b6test_10", "WBILMTESTTRACK_10", "WBIL", 2, 1, 1, "en", "", "test", "meest", "9", 99, "1")
+
+
+
+database.CreateUser("Test Testov", "+9720000000", "2639809", "Kiryat Mozkin", "Ploshad Mira 15", "Kraiot", "test@gmail.com")
+database.CreateProduct(9934930, "WBILMTESTTRACK", 453, "ab4219087a764ae0btest", "Mascaras", 30, "0", 317, 2389212, "Vivienne Sabo", 202)
+database.CreatePay("b563feb7b2b84b6test", "", "USD", "wbpay", 1817, 1637907727, "alpha", 1500, 317, 0)
+database.CreateOrder("b563feb7b2b84b6test", "WBILMTESTTRACK", "WBIL", 1, 1, [1, 2], "en", "", "test", "meest", "9", 99, "2021-11-26T06:22:19Z", "1")

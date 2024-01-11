@@ -1,15 +1,14 @@
 package database
 
 import (
-	"gorm.io/gorm"
 	"time"
 )
 
 type User struct {
-	gorm.Model
 	ID      uint `gorm:"primaryKey"`
 	Name    string
-	Zip     uint
+	Phone   string
+	Zip     string
 	City    string
 	Address string
 	Region  string
@@ -17,10 +16,9 @@ type User struct {
 }
 
 type Pay struct {
-	gorm.Model
 	ID           uint `gorm:"primaryKey"`
-	Transaction  uint
-	RequestId    uint
+	Transaction  string
+	RequestID    string
 	Currency     string
 	Provider     string
 	Amount       uint
@@ -32,25 +30,24 @@ type Pay struct {
 }
 
 type Product struct {
-	gorm.Model
 	ID          uint `gorm:"primaryKey"`
 	ChrtID      uint
-	TrackNumber uint
+	TrackNumber string
 	Price       uint
 	Rid         string
 	Name        string
 	Sale        uint
 	Size        string
 	TotalPrice  uint
-	NmId        uint
+	NmID        uint
 	Brand       string
 	Status      uint
 }
 
 type Order struct {
-	gorm.Model
-	OrderUid          uint `gorm:"primaryKey;column:uid"`
-	TrackNumber       string
+	ID                uint   `gorm:"primaryKey"`
+	OrderUid          string `gorm:"type:varchar(64);uniqueIndex"`
+	TrackNumber       string `gorm:"type:varchar(64);uniqueIndex"`
 	Entry             string
 	Delivery          uint
 	User              User `gorm:"foreignKey:Delivery"`
@@ -67,38 +64,3 @@ type Order struct {
 	DateCreated       time.Time
 	OofShard          string
 }
-
-func Migrations() {
-	db := ConnectionDb()
-	db.AutoMigrate(&User{}, &Pay{}, &Product{}, &Order{})
-	CloseConnection(db)
-}
-
-//func main() {
-//	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{
-//		Logger: logger.Default.LogMode(logger.Info),
-//	})
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	m := gormigrate.New(db, gormigrate.DefaultOptions, []*gormigrate.Migration{
-//		{
-//			ID: "202201041200",
-//			Migrate: func(tx *gorm.DB) error {
-//				return tx.AutoMigrate(&User{})
-//			},
-//			Rollback: func(tx *gorm.DB) error {
-//				return tx.Migrator().DropTable(&User{})
-//			},
-//		},
-//		// Добавьте другие миграции для ваших фикстур
-//	})
-//
-//	if err := m.Migrate(); err != nil {
-//		log.Fatal(err)
-//	}
-//
-//	// Теперь у вас есть база данных с миграциями, включая таблицу User
-//	// Вы можете добавить код для создания фикстур данных в этой таблице
-//}
