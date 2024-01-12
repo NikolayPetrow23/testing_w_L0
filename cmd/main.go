@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"testing_w_L0/database"
 	"testing_w_L0/my_cache"
-	"testing_w_L0/natsStreaming"
+	"testing_w_L0/nats_streaming"
 	"testing_w_L0/router"
 	"time"
 )
@@ -13,13 +13,13 @@ import (
 func main() {
 	database.Migrations()
 
-	my_cache.LoadCacheFromDB(database.SelectAllOrders())
+	my_cache.LoadCacheFromDB(my_cache.Cache(), database.SelectAllOrders())
 
-	go natsStreaming.SubscribeNuts()
+	go nats_streaming.SubscribeNuts()
 
 	go func() {
 		time.Sleep(3 * time.Second)
-		natsStreaming.OrderMessage()
+		nats_streaming.OrderMessage()
 	}()
 
 	static := http.FileServer(http.Dir("static"))

@@ -4,21 +4,16 @@ import (
 	"github.com/patrickmn/go-cache"
 	"log"
 	"testing_w_L0/database"
-	"time"
 )
 
-var c *cache.Cache
-
-func LoadCacheFromDB(orders []database.Order) {
+func LoadCacheFromDB(c *cache.Cache, orders []database.Order) *cache.Cache {
 	// Функция загрузки заказов из бд в кэш.
-
-	c = cache.New(15*time.Minute, 20*time.Minute)
 
 	ordersMap := OrdersMap{
 		Orders: make(map[string]OrderData),
 	}
 	for _, order := range orders {
-		orderMap := orderToMap(order)
+		orderMap := OrderToMap(order)
 		ordersMap.Orders[order.OrderUid] = orderMap.Orders[order.OrderUid]
 		c.Set(order.OrderUid, orderMap.Orders[order.OrderUid], cache.DefaultExpiration)
 	}
@@ -30,9 +25,11 @@ func LoadCacheFromDB(orders []database.Order) {
 	if len(c.Items()) == 0 {
 		log.Println("Данные не были загружены из базы данных, произошла ошибка или данных нет!")
 	}
+
+	return c
 }
 
-func GetOrderFromCache(OrderUid string) interface{} {
+func GetOrderFromCache(c *cache.Cache, OrderUid string) interface{} {
 	// Функция поиска заказа в кэшэ по OrderUid.
 
 	orderData, found := c.Get(OrderUid)
@@ -44,9 +41,11 @@ func GetOrderFromCache(OrderUid string) interface{} {
 	return orderData
 }
 
-func AddOrderToCache(order database.Order) {
+func AddOrderToCache(c *cache.Cache, order database.Order) *cache.Cache {
 	// Функция добавления нового заказа в кэш.
+	orderMap := OrderToMap(order)
 
-	orderMap := orderToMap(order)
 	c.Set(order.OrderUid, orderMap.Orders[order.OrderUid], cache.DefaultExpiration)
+
+	return c
 }

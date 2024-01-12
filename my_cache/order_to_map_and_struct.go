@@ -27,7 +27,7 @@ type OrdersMap struct {
 	Orders map[string]OrderData
 }
 
-func orderToMap(order database.Order) OrdersMap {
+func OrderToMap(order database.Order) OrdersMap {
 	// Функция преобразования данных из бд в структуру OrderData для добавления в кэш.
 
 	orderMap := OrdersMap{

@@ -1,4 +1,4 @@
-package natsStreaming
+package nats_streaming
 
 import (
 	"log"

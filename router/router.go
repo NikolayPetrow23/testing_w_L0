@@ -43,7 +43,7 @@ func OrderRouter(w http.ResponseWriter, r *http.Request) {
 
 	orderUid := r.FormValue("orderUid")
 
-	data := my_cache.GetOrderFromCache(orderUid)
+	data := my_cache.GetOrderFromCache(my_cache.Cache(), orderUid)
 
 	if data == nil {
 		http.Redirect(w, r, "/?error=OrderNotFound&orderUid="+orderUid, http.StatusSeeOther)

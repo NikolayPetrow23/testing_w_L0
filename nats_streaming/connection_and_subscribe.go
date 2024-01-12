@@ -1,4 +1,4 @@
-package natsStreaming
+package nats_streaming
 
 import (
 	"encoding/json"
@@ -81,5 +81,5 @@ func messageProcessing(msg *stan.Msg) {
 
 	newOrderUID, err := database.CreateOrder(order)
 	selectOrder := database.SelectOrderUID(newOrderUID)
-	my_cache.AddOrderToCache(selectOrder)
+	my_cache.AddOrderToCache(my_cache.Cache(), selectOrder)
 }
