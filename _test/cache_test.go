@@ -1,7 +1,6 @@
 package _test
 
 import (
-	"fmt"
 	"github.com/patrickmn/go-cache"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -10,7 +9,9 @@ import (
 	"time"
 )
 
-var TestOrderData = database.Order{
+var c *cache.Cache
+
+var testOrderData = database.Order{
 	ID:          1,
 	OrderUid:    "test_order_uid",
 	TrackNumber: "test_track_number",
@@ -65,16 +66,37 @@ var TestOrderData = database.Order{
 	OofShard:          "test_oof_shard",
 }
 
+func testCache() *cache.Cache {
+	c = cache.New(15*time.Minute, 20*time.Minute)
+	return c
+}
+
 func TestLoadCacheFromDB(t *testing.T) {
-	var c *cache.Cache
+	orders := []database.Order{testOrderData}
 
-	orders := []database.Order{TestOrderData}
-
-	my_cache.LoadCacheFromDB(orders)
-
-	fmt.Println(c.Items())
+	c := my_cache.LoadCacheFromDB(testCache(), orders)
 
 	assert.NotEmpty(t, c.Items(), "Кэш не должен быть пустым после загрузки")
+	assert.Equal(t, len(c.Items()), 1)
 
 	c.Flush()
+}
+
+func TestAddCacheFromDB(t *testing.T) {
+	c := my_cache.AddOrderToCache(testCache(), testOrderData)
+
+	assert.NotEmpty(t, c.Items(), "Кэш не должен быть пустым после загрузки")
+	assert.Equal(t, len(c.Items()), 1)
+
+	c.Flush()
+}
+
+func TestGetOrderFromCache(t *testing.T) {
+	c := testCache()
+
+	my_cache.AddOrderToCache(c, testOrderData)
+
+	cacheOrder := my_cache.GetOrderFromCache(c, testOrderData.OrderUid)
+
+	assert.NotEmpty(t, cacheOrder, "Кэш не должен быть пустым после загрузки")
 }
